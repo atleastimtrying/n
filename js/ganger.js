@@ -1,5 +1,6 @@
 N.Ganger = function(game, player, name){
   var ganger = {
+    id: N.utils.assignId(),
     player: player,
     name: name,
     stats: {
@@ -19,12 +20,15 @@ N.Ganger = function(game, player, name){
       N.weapons.lasgun
     ],
     location: {
-      x: N.utils.roundom(30),
-      y: N.utils.roundom(30),
+      x: N.utils.roundom(850) + 25,
+      y: N.utils.roundom(425) + 50,
       z: 0,
     },
     render: function(){
-      return '<div class="ganger" style="top: ' + ganger.location.y + 'px; left: ' + ganger.location.x +'px;"><span class="name">' + ganger.name + '</span></div>'
+      return '<div class="ganger" id="ID' + ganger.id + '" style="top: ' + ganger.location.y + 'px; left: ' + ganger.location.x +'px;"><span class="name">' + ganger.name + '</span></div>'
+    },
+    setElement: function(el){
+      ganger.el = el;
     }
   };
   return ganger;
