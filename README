@@ -1,5 +1,30 @@
 This is an attempt at migrating some rules from a popular board game into a browser game.
 
+Things that need doing game wise
+
+- pre game full render of both gangs
+- dice option
+- movement phase
+- shooting phase
+- hand to hand combat phase
+- scenery
+  - randomize scenery
+  - restrict movement
+  - restrict vision (raycasting)
+
+Thing that need doing technically:
+- implement require js
+- set up js files as proper modules
+- abstract html out into mustache
+- serve via a node app.
+
+Things a way off
+- persistance of players/ accounts (REST)
+- persistence of games (REST)
+- remote viewing of games
+- real time games
+- delayed games (like scrabble)
+
 Anders
 
 ^__^

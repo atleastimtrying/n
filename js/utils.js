@@ -13,5 +13,9 @@ N.utils = {
       response.push($(this).val());
     });
     return response;
+  },
+  collision: function(object1, object2){
+    //
+
   }
 };
