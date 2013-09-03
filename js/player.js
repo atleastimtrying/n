@@ -1,6 +1,7 @@
 N.Player = function(options, game){
   var player = this;
   player.name = options.name;
+  var gang_names = options.gang_names;
   var content = function(){
     var response = '<h2>' + player.name + '&rsquo;s turn</h2>';
     $(player.gang).each(function(index, ganger){
@@ -9,13 +10,14 @@ N.Player = function(options, game){
     return response;
   };
 
-  this.gang = function(l){
+  this.gang = function(names){
     var arr = [];
+    var l = names.length;
     for(var i = 0; i < l; ++i){
-      arr.push(new N.Ganger(game, player, 'reg'));
+      arr.push(new N.Ganger(game, player, names[i]));
     }
     return arr;
-  }(4);
+  }(gang_names);
 
   var findGanger = function(id){
     var response = false;
