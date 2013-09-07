@@ -2,7 +2,6 @@ This is an attempt at migrating some rules from a popular board game into a brow
 
 Things that need doing game wise
 
-- pre game full render of both gangs
 - dice option
 - movement phase
 - shooting phase
@@ -13,10 +12,8 @@ Things that need doing game wise
   - restrict vision (raycasting)
 
 Thing that need doing technically:
-- implement require js
 - set up js files as proper modules
 - abstract html out into mustache
-- serve via a node app.
 
 Things a way off
 - persistance of players/ accounts (REST)
