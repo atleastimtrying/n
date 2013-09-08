@@ -7,7 +7,7 @@
 }
 
 body{
-  background:#ccc;
+  background-image:url(img/square.jpg);
   padding-bottom:64px;
 }
 
@@ -44,7 +44,8 @@ article{
 
 h2{
   font-size:32px;
-  margin-bottom:16px;
+  line-height:32px;
+  padding:8px;
 }
 
 p{
@@ -63,7 +64,7 @@ button{
   border-radius:2px;
   box-shadow: 4px 4px 0 #333;
   transition:background 0.2s ease-out, box-shadow 0.2s ease-out;
-  display:block;
+  display:inline-block;
 }
 
 button:hover{
@@ -77,7 +78,7 @@ button:active{
 }
 section{
   display:inline-block;
-  padding:16px 8px;
+  padding:8px;
 }
 input{
   background: white;
@@ -96,11 +97,17 @@ input{
 input:focus{
   box-shadow:0 0 3px #333;
 }
+input:last-child{
+  margin-bottom:0;
+}
 #table{
   position:relative;
-  background:#ccc;
+  background-image:url(img/concrete.jpg);
   width:900px;
   height:500px;
+  box-shadow: 0 0 4px black;
+  border:3px solid black;
+  text-align: center;
 }
 .ganger{
   border-radius:50%;
