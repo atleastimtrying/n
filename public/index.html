@@ -4,6 +4,7 @@
     <title>n</title>
     <link href="" id='favicon' rel="icon" type="image/png">
     <link href="style.css" rel="stylesheet">
+    <script src="js/libs/mustache.js"></script>
     <script data-main="js/init" src="js/libs/require.js"></script>
   </head>
   <body>
@@ -11,7 +12,39 @@
       <h1>n</h1>
     </header>
     <article>
+      <header id='header'></header>
       <div id='table'></div>
     </article>
+    <footer>
+    </footer>
+    <script type="text/html" id="start_screen">
+      <h2>New Game</h2>
+      <section>
+        <input class="player1" value="player 1">
+        <input class="player1-ganger" value="ganger">
+        <input class="player1-ganger" value="ganger">
+        <input class="player1-ganger" value="ganger">
+        <input class="player1-ganger" value="ganger">
+      </section>
+      <section>
+        <input class="player2" value="player 2">
+        <input class="player2-ganger" value="ganger">
+        <input class="player2-ganger" value="ganger">
+        <input class="player2-ganger" value="ganger">
+        <input class="player2-ganger" value="ganger">
+      </section>
+      <button class="start">Start</button>
+    </script>
+    <script type="text/html" id="ganger">
+    <div class="ganger" id="ID{{id}}" style="
+      background:{{player.colour}};
+      top:{{location.y}}px;
+      left: {{location.x}}px;
+      ">
+      <span class="name">
+        {{name}}
+      </span>
+    </div>
+    </script>
   </body>
 </html>

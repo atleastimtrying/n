@@ -8,11 +8,26 @@
 
 body{
   background:#ccc;
+  padding-bottom:64px;
 }
 
 header{
   padding:16px;
   background:#222;
+}
+header#header{
+  background:none;
+}
+
+footer{
+  padding:16px;
+  background:white;
+  height:64px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  box-sizing:border-box;
+  width:100%;
 }
 
 header h1{
@@ -24,6 +39,7 @@ header h1{
 article{
   max-width:900px;
   margin:0 auto;
+  padding:16px;
 }
 
 h2{
@@ -37,7 +53,7 @@ p{
 }
 
 button{
-  background:#ccc;
+  background:#6c6;
   color:white;
   border:none;
   font-size:32px;
@@ -47,6 +63,7 @@ button{
   border-radius:2px;
   box-shadow: 4px 4px 0 #333;
   transition:background 0.2s ease-out, box-shadow 0.2s ease-out;
+  display:block;
 }
 
 button:hover{
@@ -58,19 +75,23 @@ button:active{
   background:#666;
   box-shadow: 0px 0px 0 #111;
 }
-
+section{
+  display:inline-block;
+  padding:16px 8px;
+}
 input{
   background: white;
   color: #666;
   border: 1px solid #555;
-  padding: 16px;
-  font-size: 32px;
+  padding: 11px;
+  line-height: 24px;
+  font-size: 24px;
   -webkit-appearance: none;
   display: block;
-  width: 100%;
   box-sizing: border-box;
   border-radius: 2px;
   outline:none;
+  margin-bottom:16px;
 }
 input:focus{
   box-shadow:0 0 3px #333;
@@ -85,10 +106,12 @@ input:focus{
   border-radius:50%;
   width:20px;
   height:20px;
+  margin:-10px;
   background:#333;
   position:absolute;
 }
-.ganger .name{
+.ganger .name,
+.ganger.inactive:hover .name{
   display:none;
   position:absolute;
   top:40px;
@@ -100,5 +123,8 @@ input:focus{
   box-shadow:0 0 2px lightblue;
 }
 .ganger.active{
-  box-shadow:0 0 2px lightgreen;
+  box-shadow:0 0 4px black;
+}
+.ganger.inactive{
+  opacity:0.2;
 }

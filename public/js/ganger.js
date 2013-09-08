@@ -25,10 +25,26 @@ N.Ganger = function(game, player, name){
       z: 0,
     },
     render: function(){
-      return '<div class="ganger" id="ID' + ganger.id + '" style="background:' + ganger.player.colour + ' ; top: ' + ganger.location.y + 'px; left: ' + ganger.location.x +'px;"><span class="name">' + ganger.name + '</span></div>'
+      return Mustache.to_html($('#ganger').html(), ganger);
     },
     setElement: function(el){
       ganger.el = el;
+    },
+    select: function(){
+      $('.ganger').removeClass('active');
+      ganger.el.addClass('active');
+      game.trigger('currentGanger', ganger);
+    },
+    deselect: function(){
+      ganger.el.removeClass('active');
+    },
+    movement: function(){
+      ganger.el.removeClass('inactive');
+      ganger.el.on('click', ganger.select);
+    },
+    disable: function(){
+      ganger.el.off('click', ganger.select);
+      ganger.el.addClass('inactive');
     }
   };
   return ganger;

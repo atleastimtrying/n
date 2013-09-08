@@ -1,7 +1,11 @@
 window.N = {};
+require.config({
+  paths:{
+    'mustache': 'libs/mustache'
+  }
+});
 require([
   "libs/jquery",
-  "libs/mustache",
   "js/dice.js",
   "js/game.js",
   "js/ganger.js",

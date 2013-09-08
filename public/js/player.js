@@ -1,13 +1,11 @@
 N.Player = function(options, game){
   var player = this;
   player.name = options.name;
-  player.colour = 'hsla(' + N.utils.roundom(360) + ', 40%, 50%, 1)'
+  player.colour = 'hsla(' + N.utils.roundom(360) + ', 40%, 50%, 1)';
   var gang_names = options.gang_names;
-  var content = function(){
-    var response = '<h2>' + player.name + '&rsquo;s turn</h2>';
-    $(player.gang).each(function(index, ganger){
-      response += ganger.render();
-    });
+  var phase = 'movement';
+  var title = function(){
+    var response = '<h2>' + player.name + '&rsquo;s turn: ' + phase + ' phase</h2>';
     return response;
   };
 
@@ -30,21 +28,31 @@ N.Player = function(options, game){
     return response;
   };
 
-  var startTurn = function(){
+  var startTurn = function(event){
+    $(game).trigger('headRender', title());
+    setElements();
     $(player.gang).each(function(index, ganger){
-      var el = $(ganger.el);
-      el.addClass('active');
+      ganger.movement();
     });
   };
 
-  var setElements = function(event, callback){
+  var endTurn = function(event){
+    setElements();
+    $(player.gang).each(function(index, ganger){
+      ganger.disable();
+    });
+  };
+
+  var movement = function(){
+
+  };
+
+  var setElements = function(){
     $(player.gang).each(function(index, ganger){
       var el = $('#ID'+ ganger.id );
       ganger.setElement(el);
     });
-    callback();
   }
-
-  $(game).bind('setElements', setElements);
   $(this).bind('startTurn', startTurn);
+  $(this).bind('endTurn', endTurn);
 };
