@@ -6,6 +6,7 @@ require.config({
 });
 require([
   "libs/jquery",
+  "libs/kinetic",
   "js/dice.js",
   "js/game.js",
   "js/ganger.js",

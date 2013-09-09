@@ -1,7 +1,7 @@
 N.Player = function(options, game){
   var player = this;
   player.name = options.name;
-  player.colour = 'hsla(' + N.utils.roundom(360) + ', 40%, 50%, 1)';
+  player.colour = 'hsla(' + N.utils.roundom(360) + ', 70%, 80%, 1)';
   var gang_names = options.gang_names;
   var phase = 'movement';
   var title = function(){
