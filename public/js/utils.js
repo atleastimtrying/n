@@ -2,6 +2,12 @@ N.utils = {
   roundom: function(int){
     return Math.round(Math.random() * int);
   },
+  randup: function(int){
+    return Math.ceil(Math.random() * int);
+  },
+  randdown: function(int){
+    return Math.floor(Math.random() * int);
+  },
   id_count: 0,
   assignId: function(){
     this.id_count += 1;

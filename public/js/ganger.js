@@ -24,27 +24,58 @@ N.Ganger = function(game, player, name){
       y: N.utils.roundom(425) + 50,
       z: 0,
     },
-    render: function(){
-      return Mustache.to_html($('#ganger').html(), ganger);
-    },
     setElement: function(el){
-      ganger.el = el;
+      ganger.el = new Kinetic.Image({
+        x: ganger.location.x,
+        y: ganger.location.y,
+        image: game.imageObj,
+        width: 30,
+        height: 30,
+        draggable: true,
+        offset: [15, 15],
+        dragBoundFunc: function(pos) {
+          var x = ganger.location.x;
+          var y = ganger.location.y;
+          var radius = ganger.stats.m * game.scale;
+          var scale = radius / Math.sqrt(Math.pow(pos.x - x, 2) + Math.pow(pos.y - y, 2));
+          if(scale < 1){
+            return {
+              y: Math.round((pos.y - y) * scale + y),
+              x: Math.round((pos.x - x) * scale + x)
+            };
+          }else{
+            return pos;
+          }
+        }
+      });
+      game.layer.add(ganger.el);
+      game.layer.draw();
     },
     select: function(){
-      $('.ganger').removeClass('active');
-      ganger.el.addClass('active');
-      game.trigger('currentGanger', ganger);
+      ganger.el.setShadowOpacity(0.8);
+      ganger.el.setShadowBlur(2);
+      $(game).trigger('currentGanger', ganger);
+      game.layer.draw();
     },
     deselect: function(){
-      ganger.el.removeClass('active');
+      ganger.el.setShadowOpacity(0.4);
+      ganger.el.setShadowBlur(4);
+      game.layer.draw();
     },
     movement: function(){
-      ganger.el.removeClass('inactive');
-      ganger.el.on('click', ganger.select);
+      ganger.el.setDraggable(true)
+      ganger.el.setShadowColor('black')
+      ganger.el.setShadowBlur(4)
+      ganger.el.setShadowOffset(2)
+      ganger.el.setShadowOpacity(0.4);
+      ganger.el.on('mouseup', ganger.select);
+      game.layer.draw();
     },
     disable: function(){
-      ganger.el.off('click', ganger.select);
-      ganger.el.addClass('inactive');
+      ganger.el.off('mouseup', ganger.select);
+      ganger.el.setOpacity(0.5);
+      ganger.el.setDraggable(false);
+      game.layer.draw();
     }
   };
   return ganger;

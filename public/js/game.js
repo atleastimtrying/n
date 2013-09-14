@@ -1,9 +1,10 @@
 N.Game = function(){
   var game = this;
   game.players = [];
-  game.scale = 20;
+  game.scale = 30;
   game.currentGanger = '';
-  
+  game.dice = new N.Dice(game);
+  game.gangerDisplay = new N.GangerDisplay(game);
   var render = function(event,content){
     $('#table').html(content);
     $(game).trigger('rendered');
@@ -27,19 +28,27 @@ N.Game = function(){
 
   var startGame = function(){
     delete game.startScreen;
-    $(game).trigger('render', renderStart());
-    $(game.players[0]).trigger('startTurn');
-    $(game.players[1]).trigger('endTurn');
+    game.stage = new Kinetic.Stage({
+        container: 'table',
+        width: 900,
+        height: 500
+    });
+    game.layer = new Kinetic.Layer();
+    game.stage.add(game.layer);
+    game.imageObj = new Image();
+    $(game.imageObj).on('load', renderStart);
+    game.imageObj.src = '../img/catachan.png';
+    game.layer.draw();
   };
 
   var renderStart = function(){
-    var html = '';
     $(game.players).each(function(index, player){
       $(player.gang).each(function(index, ganger){
-        html += ganger.render();
+        ganger.setElement();
       });
-    });
-    return html;
+    }); 
+    $(game.players[0]).trigger('startTurn');
+    $(game.players[1]).trigger('endTurn');
   }
   //rendering
   $(game).bind('render', render);

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>n</title>
-    <link href="" id='favicon' rel="icon" type="image/png">
+    <link href="" id="favicon" rel="icon" type="image/png">
     <link href="style.css" rel="stylesheet">
     <script src="js/libs/mustache.js"></script>
     <script data-main="js/init" src="js/libs/require.js"></script>
@@ -11,9 +11,14 @@
     <header>
       <h1>n</h1>
     </header>
+    <aside>
+      <button id="d6">6</button>
+      <button id="d3">3</button>
+    </aside>
+    <div id="ganger-display"></div>
     <article>
-      <header id='header'></header>
-      <div id='table'></div>
+      <header id="header"></header>
+      <div id="table"></div>
     </article>
     <footer>
     </footer>
@@ -47,6 +52,9 @@
         {{name}}
       </span>
     </div>
+    </script>
+    <script type="text/html" id="gangerDisplayTemplate">
+      <p>Ganger name : {{name}}</p>
     </script>
   </body>
 </html>

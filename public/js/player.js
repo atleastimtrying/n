@@ -30,14 +30,12 @@ N.Player = function(options, game){
 
   var startTurn = function(event){
     $(game).trigger('headRender', title());
-    setElements();
     $(player.gang).each(function(index, ganger){
       ganger.movement();
     });
   };
 
   var endTurn = function(event){
-    setElements();
     $(player.gang).each(function(index, ganger){
       ganger.disable();
     });
@@ -46,13 +44,6 @@ N.Player = function(options, game){
   var movement = function(){
 
   };
-
-  var setElements = function(){
-    $(player.gang).each(function(index, ganger){
-      var el = $('#ID'+ ganger.id );
-      ganger.setElement(el);
-    });
-  }
   $(this).bind('startTurn', startTurn);
   $(this).bind('endTurn', endTurn);
 };
