@@ -2,7 +2,6 @@ This is an attempt at migrating some rules from a popular board game into a brow
 
 Things that need doing game wise
 
-- dice option
 - movement phase
 - shooting phase
 - hand to hand combat phase
@@ -13,7 +12,6 @@ Things that need doing game wise
 
 Thing that need doing technically:
 - set up js files as proper modules
-- abstract html out into mustache
 
 Things a way off
 - persistance of players/ accounts (REST)
@@ -21,6 +19,34 @@ Things a way off
 - remote viewing of games
 - real time games
 - delayed games (like scrabble)
+
+Turn order:
+
+Start player turn
+  Movement:
+    for each ganger
+      select ganger, 
+      move ganger, 
+      turn ganger.
+    lock gangers in place
+    end phase
+  Shooting
+    for each ganger
+      select ganger, 
+      choose target in range,
+      roll to hit target
+      roll to wound target
+      inflict damage on target,
+    end phase
+  Close combat
+    for each ganger
+      if touching
+        combat turns
+end player turn
+
+
+
+
 
 Anders
 
