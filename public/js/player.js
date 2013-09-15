@@ -13,7 +13,9 @@ N.Player = function(options, game){
     var arr = [];
     var l = names.length;
     for(var i = 0; i < l; ++i){
-      arr.push(new N.Ganger(game, player, names[i]));
+      var ganger = new N.Ganger(game, player, names[i]));
+      arr.push(ganger);
+      game.gangers.push(ganger);
     }
     return arr;
   }(gang_names);

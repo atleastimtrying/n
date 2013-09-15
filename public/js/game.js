@@ -1,6 +1,7 @@
 N.Game = function(){
   var game = this;
   game.players = [];
+  game.gangers = [];
   game.scale = 20;
   game.currentGanger = '';
   game.overlays = new N.Overlays(game);
