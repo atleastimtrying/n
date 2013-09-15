@@ -9,6 +9,7 @@ require([
   "libs/kinetic",
   "js/dice.js",
   "js/game.js",
+  "js/overlays.js",
   "js/input.js",
   "js/ganger_display.js",
   "js/ganger.js",

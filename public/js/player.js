@@ -30,9 +30,7 @@ N.Player = function(options, game){
 
   var startTurn = function(event){
     $(game).trigger('headRender', title());
-    $(player.gang).each(function(index, ganger){
-      ganger.movement();
-    });
+    movement();
   };
 
   var endTurn = function(event){
@@ -42,14 +40,40 @@ N.Player = function(options, game){
   };
 
   var endMovement = function(){
+    $(game).trigger('overlays.hide','movement');
+    $(game).off('endPhase', endMovement);
     $(player.gang).each(function(index, ganger){
       ganger.endMovement();
     });
+    shooting();
   };
 
   var movement = function(){
-    $(game).bind('endPhase', endMovent);
+    phase = 'movement';
+    $(game).trigger('overlays.show','movement');
+    $(player.gang).each(function(index, ganger){
+      ganger.movement();
+    });
+    $(game).on('endPhase', endMovement);
   };
-  $(this).bind('startTurn', startTurn);
-  $(this).bind('endTurn', endTurn);
+
+  var shooting = function(){
+    $(game).trigger('overlays.show','range');
+    phase = 'shooting';
+    $(player.gang).each(function(index, ganger){
+      ganger.shooting();
+    });
+    $(game).on('endPhase', endShooting);
+  }
+
+  var endShooting = function(){
+    $(game).trigger('overlays.hide','range');
+    $(game).off('endPhase', endShooting);
+    $(player.gang).each(function(index, ganger){
+      ganger.endShooting();
+    });
+    console.log('end of shooting');
+  };
+  $(this).on('startTurn', startTurn);
+  $(this).on('endTurn', endTurn);
 };

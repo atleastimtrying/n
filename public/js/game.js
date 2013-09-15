@@ -1,8 +1,9 @@
 N.Game = function(){
   var game = this;
   game.players = [];
-  game.scale = 30;
+  game.scale = 20;
   game.currentGanger = '';
+  game.overlays = new N.Overlays(game);
   game.dice = new N.Dice(game);
   game.input = new N.Input(game);
   game.gangerDisplay = new N.GangerDisplay(game);
@@ -35,6 +36,7 @@ N.Game = function(){
         width: 900,
         height: 500
     });
+    $(game).trigger('overlays.init');
     game.layer = new Kinetic.Layer();
     game.stage.add(game.layer);
     game.imageObj = new Image();

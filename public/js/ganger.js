@@ -29,10 +29,11 @@ N.Ganger = function(game, player, name){
         x: ganger.location.x,
         y: ganger.location.y,
         image: game.imageObj,
-        width: 30,
-        height: 30,
+        width: game.scale,
+        height: game.scale,
+        rotationDeg: ganger.location.r,
         draggable: true,
-        offset: [15, 15],
+        offset: [game.scale/2, game.scale/2],
         dragBoundFunc: function(pos) {
           var x = ganger.location.x;
           var y = ganger.location.y;
@@ -52,20 +53,39 @@ N.Ganger = function(game, player, name){
       game.layer.draw();
     },
     rotateLeft: function(){
-      ganger.el.rotateDeg(-5);
+      ganger.el.rotateDeg(-45);
       game.layer.draw();
     },
     rotateRight: function(){
-      ganger.el.rotateDeg(5);
+      ganger.el.rotateDeg(45);
       game.layer.draw();
     },
-    select: function(){
+    selectMove: function(){
       ganger.el.setShadowOpacity(0.8);
       ganger.el.setShadowBlur(2);
       $(game).trigger('currentGanger', ganger);
       game.layer.draw();
+      $(game).trigger('overlays.position', {
+        selector: 'movement', 
+        x: ganger.location.x,
+        y: ganger.location.y,
+        radius: ganger.stats.m * game.scale
+      });
       $(game).on('input.left', ganger.rotateLeft);
       $(game).on('input.right', ganger.rotateRight);
+    },
+    selectShoot: function(){
+      ganger.el.setShadowOpacity(0.8);
+      ganger.el.setShadowBlur(2);
+      $(game).trigger('currentGanger', ganger);
+      game.layer.draw();
+      $(game).trigger('overlays.position', {
+        selector: 'range', 
+        x: ganger.location.x, 
+        y: ganger.location.y,
+        rotation: ganger.location.r - 112.5,
+        radius: ganger.weapons[1].range * game.scale
+      });
     },
     setPosition: function(){
       ganger.location = {      
@@ -91,22 +111,28 @@ N.Ganger = function(game, player, name){
       ganger.el.setShadowBlur(4)
       ganger.el.setShadowOffset(2)
       ganger.el.setShadowOpacity(0.4);
-      ganger.el.on('mouseup', ganger.select);
+      ganger.el.on('mouseup', ganger.selectMove);
       game.layer.draw();
     },
     endMovement: function(){
       ganger.setPosition();
-      ganger.el.off('mouseup', ganger.select);
+      ganger.el.off('mouseup', ganger.selectMove);
       ganger.el.setDraggable(false);
     },
+    shooting: function(){
+      ganger.el.on('mouseup', ganger.selectShoot);
+    },
+    endShooting: function(){
+      ganger.el.off('mouseup', ganger.selectShoot);
+    },
     disable: function(){
-      ganger.el.off('mouseup', ganger.select);
+      ganger.el.off('mouseup', ganger.selectMove);
       ganger.el.setOpacity(0.5);
       ganger.el.setDraggable(false);
       game.layer.draw();
     }
   };
-  $(game).bind('ganger.setElement', ganger.setElement);
-  $(game).bind('ganger.deselect', ganger.deselect);
+  $(game).on('ganger.setElement', ganger.setElement);
+  $(game).on('ganger.deselect', ganger.deselect);
   return ganger;
 };
