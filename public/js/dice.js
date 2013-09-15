@@ -13,10 +13,10 @@ N.Dice = function(game){
   };
   
   $('#d6').click(function(){
-    $(this).html(N.dice.d6());
+    $(this).html(dice.d6());
   });
   
   $('#d3').click(function(){
-    $(this).html(N.dice.d3());
+    $(this).html(dice.d3());
   });
 };
