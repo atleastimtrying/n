@@ -41,8 +41,14 @@ N.Player = function(options, game){
     });
   };
 
-  var movement = function(){
+  var endMovement = function(){
+    $(player.gang).each(function(index, ganger){
+      ganger.endMovement();
+    });
+  };
 
+  var movement = function(){
+    $(game).bind('endPhase', endMovent);
   };
   $(this).bind('startTurn', startTurn);
   $(this).bind('endTurn', endTurn);

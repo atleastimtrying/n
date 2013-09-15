@@ -21,6 +21,7 @@
       <div id="table"></div>
     </article>
     <footer>
+      <button id="end-phase">End Phase</button>
     </footer>
     <script type="text/html" id="start_screen">
       <h2>New Game</h2>
@@ -42,19 +43,49 @@
         <button class="start">Start</button>
       </div>
     </script>
-    <script type="text/html" id="ganger">
-    <div class="ganger" id="ID{{id}}" style="
-      background:{{player.colour}};
-      top:{{location.y}}px;
-      left: {{location.x}}px;
-      ">
-      <span class="name">
-        {{name}}
-      </span>
-    </div>
-    </script>
     <script type="text/html" id="gangerDisplayTemplate">
-      <p>Ganger name : {{name}}</p>
+      <table>
+        <tr>
+          <td>name:</td>
+          <td>{{name}}</td>
+        </tr>
+        <tr>
+          <td>m:</td>
+          <td>{{stats.m}}</td>
+        </tr>
+        <tr>
+          <td>ws:</td>
+          <td>{{stats.ws}}</td>
+        </tr>
+        <tr>
+          <td>bs:</td>
+          <td>{{stats.bs}}</td>
+        </tr>
+        <tr>
+          <td>s:</td>
+          <td>{{stats.s}}</td>
+        </tr>
+        <tr>
+          <td>t:</td>
+          <td>{{stats.t}}</td>
+        </tr>
+        <tr> 
+          <td>w:</td>
+          <td>{{stats.w}}</td>      
+        </tr>
+        <tr>
+          <td>i:</td>
+          <td>{{stats.i}}</td>    
+        </tr>
+        <tr>
+          <td>a:</td>
+          <td>{{stats.a}}</td>
+        </tr>
+        <tr>
+          <td>ld:</td>
+          <td>{{stats.ld}}</td>
+        </tr>
+      </table>
     </script>
   </body>
 </html>

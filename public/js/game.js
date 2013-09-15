@@ -4,6 +4,7 @@ N.Game = function(){
   game.scale = 30;
   game.currentGanger = '';
   game.dice = new N.Dice(game);
+  game.input = new N.Input(game);
   game.gangerDisplay = new N.GangerDisplay(game);
   var render = function(event,content){
     $('#table').html(content);
@@ -11,6 +12,7 @@ N.Game = function(){
   };
 
   var setCurrentGanger = function(event, ganger){
+    $(game).trigger('ganger.deselect', ganger.id);
     game.currentGanger = ganger;
   };
   
@@ -42,11 +44,7 @@ N.Game = function(){
   };
 
   var renderStart = function(){
-    $(game.players).each(function(index, player){
-      $(player.gang).each(function(index, ganger){
-        ganger.setElement();
-      });
-    }); 
+    $(game).trigger('ganger.setElement'); 
     $(game.players[0]).trigger('startTurn');
     $(game.players[1]).trigger('endTurn');
   }

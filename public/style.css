@@ -15,6 +15,7 @@ header{
   padding:16px;
   background:#222;
 }
+
 header#header{
   background:none;
 }
@@ -41,6 +42,7 @@ article{
   margin:0 auto;
   padding:16px;
 }
+
 h2{
   font-size:32px;
   line-height:32px;
@@ -87,6 +89,7 @@ aside{
   padding:16px;
   text-align: center;
 }
+
 button#d6,
 button#d3{
   height:0;
@@ -114,6 +117,7 @@ section{
   display:inline-block;
   padding:8px;
 }
+
 input{
   background: white;
   color: #666;
@@ -128,12 +132,15 @@ input{
   outline:none;
   margin-bottom:16px;
 }
+
 input:focus{
   box-shadow:0 0 3px #333;
 }
+
 input:last-child{
   margin-bottom:0;
 }
+
 #ganger-display{
   position:absolute;
   top:64px;
@@ -142,6 +149,7 @@ input:last-child{
   color:white;
   background:#333;
 }
+
 #table{
   position:relative;
   background-image:url(img/concrete.jpg);
@@ -151,6 +159,11 @@ input:last-child{
   border:3px solid black;
   text-align: center;
 }
+
+#end-phase{
+  display:inline-block;
+}
+
 .ganger{
   border-radius:50%;
   width:20px;
@@ -159,21 +172,26 @@ input:last-child{
   background:#333;
   position:absolute;
 }
+
 .ganger .name,
 .ganger.inactive:hover .name{
   display:none;
   position:absolute;
   top:40px;
 }
+
 .ganger:hover .name{
   display:block;
 }
+
 .ganger.hover{
   box-shadow:0 0 2px lightblue;
 }
+
 .ganger.active{
   box-shadow:0 0 4px black;
 }
+
 .ganger.inactive{
   opacity:0.6;
 }

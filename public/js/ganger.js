@@ -7,7 +7,6 @@ N.Ganger = function(game, player, name){
       m: 4,
       ws: 3,
       bs: 3,
-      ws: 3,
       s: 3,
       t: 3,
       w: 1,
@@ -23,6 +22,7 @@ N.Ganger = function(game, player, name){
       x: N.utils.roundom(850) + 25,
       y: N.utils.roundom(425) + 50,
       z: 0,
+      r: N.utils.roundom(360)
     },
     setElement: function(el){
       ganger.el = new Kinetic.Image({
@@ -51,16 +51,39 @@ N.Ganger = function(game, player, name){
       game.layer.add(ganger.el);
       game.layer.draw();
     },
+    rotateLeft: function(){
+      ganger.el.rotateDeg(-5);
+      game.layer.draw();
+    },
+    rotateRight: function(){
+      ganger.el.rotateDeg(5);
+      game.layer.draw();
+    },
     select: function(){
       ganger.el.setShadowOpacity(0.8);
       ganger.el.setShadowBlur(2);
       $(game).trigger('currentGanger', ganger);
       game.layer.draw();
+      $(game).on('input.left', ganger.rotateLeft);
+      $(game).on('input.right', ganger.rotateRight);
     },
-    deselect: function(){
-      ganger.el.setShadowOpacity(0.4);
-      ganger.el.setShadowBlur(4);
-      game.layer.draw();
+    setPosition: function(){
+      ganger.location = {      
+        x: ganger.el.getX(),
+        y: ganger.el.getY(),
+        z: 0,
+        r: ganger.el.getRotationDeg()
+      }
+    },
+    deselect: function(event, id){
+      if(ganger.id !== id){
+        ganger.setPosition();
+        ganger.el.setShadowOpacity(0.4);
+        ganger.el.setShadowBlur(4);
+        game.layer.draw();
+      }
+      $(game).off('input.left', ganger.rotateLeft);
+      $(game).off('input.right', ganger.rotateRight);
     },
     movement: function(){
       ganger.el.setDraggable(true)
@@ -71,6 +94,11 @@ N.Ganger = function(game, player, name){
       ganger.el.on('mouseup', ganger.select);
       game.layer.draw();
     },
+    endMovement: function(){
+      ganger.setPosition();
+      ganger.el.off('mouseup', ganger.select);
+      ganger.el.setDraggable(false);
+    },
     disable: function(){
       ganger.el.off('mouseup', ganger.select);
       ganger.el.setOpacity(0.5);
@@ -78,5 +106,7 @@ N.Ganger = function(game, player, name){
       game.layer.draw();
     }
   };
+  $(game).bind('ganger.setElement', ganger.setElement);
+  $(game).bind('ganger.deselect', ganger.deselect);
   return ganger;
 };
